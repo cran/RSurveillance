@@ -24,7 +24,7 @@
 ##' n.ap(0.2, c(0.01, 0.02, 0.05, 0.1))
 n.ap<- function(p, precision, conf=0.95) {
   tails<- 2
-  z.conf<- qnorm(1 - (1 - conf)/tails, 0, 1)
+  z.conf<- stats::qnorm(1 - (1 - conf)/tails, 0, 1)
   # calculate n
   n<- ceiling(z.conf^2*p*(1-p)/(precision^2))
     return(n)
@@ -50,14 +50,14 @@ n.ap<- function(p, precision, conf=0.95) {
 binom.agresti<- function(x, n, conf=0.95) {
   # agresti-coull
   tails<- 2
-  z.conf<- qnorm(1 - (1 - conf)/tails, 0, 1)
+  z.conf<- stats::qnorm(1 - (1 - conf)/tails, 0, 1)
   n.ac<- n + z.conf^2
   x.ac<- x + z.conf^2/2
   p.ac<- x.ac/n.ac
   q.ac<- 1 - p.ac
   lc<- p.ac - z.conf*(p.ac*q.ac)^0.5 * n.ac^-0.5
   uc<- p.ac + z.conf*(p.ac*q.ac)^0.5 * n.ac^-0.5
-  return(data.frame(x=x, n=n, proportion=p.ac, lower=lc,
+  return(data.frame(x=x, n=n, proportion=x/n, lower=lc,
                upper=uc, conf.level=conf, method="agresti-coull"))
 }
 
@@ -81,8 +81,8 @@ binom.agresti<- function(x, n, conf=0.95) {
 binom.jeffreys<- function(x, n, conf=0.95) {
   # jeffreys interval
   tails<- 2
-  lc<- qbeta((1 - conf)/tails, x+0.5, n-x+0.5)
-  uc<- qbeta(1 - (1 - conf)/tails, x+0.5, n-x+0.5)
+  lc<- stats::qbeta((1 - conf)/tails, x+0.5, n-x+0.5)
+  uc<- stats::qbeta(1 - (1 - conf)/tails, x+0.5, n-x+0.5)
   p<- x/n
   return(data.frame(x=x, n=n, proportion=p,
                lower=lc, upper=uc, conf.level=conf, method="jeffreys"))
@@ -108,8 +108,8 @@ binom.jeffreys<- function(x, n, conf=0.95) {
 binom.cp<- function(x, n, conf=0.95) {
   # clopper-pearson exact interval
   tails<- 2
-  lc<- qbeta((1 - conf)/tails, x, n-x+1)
-  uc<- qbeta(1 - (1 - conf)/tails, x+1, n-x)
+  lc<- stats::qbeta((1 - conf)/tails, x, n-x+1)
+  uc<- stats::qbeta(1 - (1 - conf)/tails, x+1, n-x)
   p<- x/n
   return(data.frame(x=x, n=n, proportion=p, lower=lc,
                upper=uc, conf.level=conf, method="clopper-pearson"))
@@ -143,8 +143,8 @@ ap<- function(x, n, type = "wilson", conf = 0.95) {
   types<- c("normal", "clopper-pearson", "wilson", "agresti-coull", "jeffreys", "all")
 #  require(epitools)
   ap.exact<- binom.cp(x, n, conf)
-  ap.normal<- epitools::binom.approx(x, n, conf)
-  ap.wilson<- epitools::binom.wilson(x, n, conf)
+  ap.normal<- data.frame(epitools::binom.approx(x, n, conf), method = "normal approx.")
+  ap.wilson<- data.frame(epitools::binom.wilson(x, n, conf), method = "wilson")
   ap.jeffreys<- binom.jeffreys(x, n, conf)
   ap.agresti<- binom.agresti(x, n, conf)
   ap.all<- list(normal=ap.normal, "exact"=ap.exact, "wilson"=ap.wilson, "jeffreys"=ap.jeffreys, "agresti" = ap.agresti)
@@ -178,29 +178,10 @@ ap<- function(x, n, type = "wilson", conf = 0.95) {
 ##' n.tp(0.5, 0.9, 0.99, c(0.01, 0.02, 0.05, 0.1, 0.2))
 n.tp<- function(p, se, sp, precision, conf=0.95) {
   tails<- 2
-  z.conf<- qnorm(1 - (1 - conf)/tails, 0, 1)
+  z.conf<- stats::qnorm(1 - (1 - conf)/tails, 0, 1)
   n<- ceiling((z.conf/precision)^2*(se*p + (1 - sp)*(1 - p))*(1 - se*p - (1 - sp)*(1 - p))/(se + sp - 1)^2)
   return(n)
 }
-
-##' Standard deviation of true prevalence estimate
-##' @description Calculates the standard deviation of true prevalence estimate
-##' assuming se and sp known exactly, used to calculate normal approximation CI for estimate
-##' @param x number of positive results in sample (scalar or vector)
-##' @param n sample size (scalar or vector)
-##' @param se test sensitivity (scalar or vector)
-##' @param sp test specificity (scalar or vector)
-##' @return vector of standard deviation values for true prevalence estimates
-##' @keywords methods
-##' @export
-##' @examples 
-##' # example of sd.tp
-##' sd.tp(1:10, 20, 0.9, 0.99)
-sd.tp<- function(x, n, se, sp) {
-  ap<- x/n
-  var.tp<- ap*(1-ap)/(n*(se + sp - 1)^2)
-  return(sqrt(var.tp))
-} # end of sd.tp function
 
 
 ##' Normal approximation confidence limits for true prevalence
@@ -222,12 +203,13 @@ sd.tp<- function(x, n, se, sp) {
 tp.normal<- function(x, n, se, sp, conf=0.95) {
 #  require(epitools)
   tails<- 2
-  z.conf<- qnorm(1 - (1 - conf)/tails, 0, 1)
+  z.conf<- stats::qnorm(1 - (1 - conf)/tails, 0, 1)
   wilson.ci<- epitools::binom.wilson(x, n, conf)
   ap<- wilson.ci$proportion
   tp<- (ap + sp - 1)/(se + sp - 1)
   tp.ci<- array(0, dim = c(length(tp), 2))
-  for (i in 1:length(tp)) tp.ci[i,]<- tp[i] + c(-1, 1)* z.conf*sd.tp(ap[i], n, se, sp)
+  sd.tp<- sqrt(ap*(1-ap)/(n*(se + sp - 1)^2))
+  for (i in 1:length(tp)) tp.ci[i,]<- tp[i] + c(-1, 1)* z.conf*sd.tp[i]
   ap<- cbind(est=ap, lower=wilson.ci$lower, upper=wilson.ci$upper)
   tp<- cbind(est=tp, lower=tp.ci[,1], upper=tp.ci[,2])
   return(list(ap=ap, tp=tp))
@@ -261,10 +243,10 @@ tp.normal<- function(x, n, se, sp, conf=0.95) {
 ##' tp(x, n, 0.95, 0.9, "c-p")
 tp<- function(x, n, se, sp, type = "blaker", conf=0.95) {
 #  require(epiR)
-  tp.cp<-epiR::epi.prev(x, n, se, sp, "c-p", conf)
-  tp.wilson<-epiR::epi.prev(x, n, se, sp, "wilson", conf)
-  tp.blaker<-epiR::epi.prev(x, n, se, sp, "blaker", conf)
-  tp.sterne<-epiR::epi.prev(x, n, se, sp, "sterne", conf)
+  tp.cp<-epiR::epi.prev(x, n, se, sp, "c-p", units = 1, conf.level = conf)
+  tp.wilson<-epiR::epi.prev(x, n, se, sp, "wilson", units = 1, conf.level = conf)
+  tp.blaker<-epiR::epi.prev(x, n, se, sp, "blaker", units = 1, conf.level = conf)
+  tp.sterne<-epiR::epi.prev(x, n, se, sp, "sterne", units = 1, conf.level = conf)
   tp.norm<- tp.normal(x, n, se, sp, conf)
   tp<- rbind(normal=tp.norm$tp, blaker=tp.blaker$tp, "c-p"=tp.cp$tp, "wilson"=tp.wilson$tp, sterne=tp.sterne$tp)
   ap<- rbind(normal=tp.norm$ap, blaker=tp.blaker$ap, "c-p"=tp.cp$ap, "wilson"=tp.wilson$ap, sterne=tp.sterne$ap)
