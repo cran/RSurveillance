@@ -37,4 +37,3 @@ ap(seq(10, 100, 10), 200, type = "agresti")
 ap(seq(10, 100, 10), 200, type = "all")
 }
 \keyword{methods}
-

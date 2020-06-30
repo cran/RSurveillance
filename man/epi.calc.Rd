@@ -29,4 +29,3 @@ epi.calc(0.1, c(5, 1), c(0.1, 0.9))
 epi.calc(0.02, c(5, 3, 1), c(0.1, 0.1, 0.8))
 }
 \keyword{methods}
-

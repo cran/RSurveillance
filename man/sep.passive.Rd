@@ -48,4 +48,3 @@ se<- mc2d::rpert(10, 0.9, 0.95, 0.98)
 sep.passive(step.p, p.inf.u, se, 10000, 10, 0.02)
 }
 \keyword{methods}
-

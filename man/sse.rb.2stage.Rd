@@ -4,8 +4,8 @@
 \alias{sse.rb.2stage}
 \title{Two-stage risk-based system sensitivity}
 \usage{
-sse.rb.2stage(C = NA, pstar.c, pstar.u, rr.c, ppr.c, rr.u, ppr.u, N = NA, n,
-  rg, se)
+sse.rb.2stage(C = NA, pstar.c, pstar.u, rr.c, ppr.c, rr.u, ppr.u,
+  N = NA, n, rg, se)
 }
 \arguments{
 \item{C}{Population size (number of clusters), NA = unknown (default)}
@@ -69,4 +69,3 @@ sse.rb.2stage(C=NA, pstar.c, pstar.u, rr.c, ppr.c, rr.u, ppr.u, N, n, rg, se)
 sse.rb.2stage(C, pstar.c, pstar.u, rr.c, ppr.c, rr.u, ppr.u, N, n, rg, se) 
 }
 \keyword{methods}
-

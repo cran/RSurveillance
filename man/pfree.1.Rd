@@ -32,4 +32,3 @@ pfree.1(runif(10, 0.4, 0.6), 0.01, 0.5)
 pfree.1(runif(10, 0.4, 0.6), runif(10, 0.005, 0.015), 0.5)
 }
 \keyword{methods}
-

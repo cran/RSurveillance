@@ -33,4 +33,3 @@ sep.var.se(NA, runif(150, 0.95, 0.99), 0.02)
 sep.var.se(500, runif(150, 0.95, 0.99), 0.02)
 }
 \keyword{methods}
-

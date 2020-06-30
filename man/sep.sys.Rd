@@ -53,4 +53,3 @@ sse<- sep.sys(1000, N, n, 0.02, 0.05, 0.9)
 data.frame(N, n, sse[[2]])
 }
 \keyword{methods}
-

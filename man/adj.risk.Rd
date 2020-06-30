@@ -27,4 +27,3 @@ adj.risk(c(5, 1), c(0.1, 0.9))
 adj.risk(c(5, 3, 1), c(0.1, 0.1, 0.8))
 }
 \keyword{methods}
-

@@ -4,7 +4,7 @@
 \alias{pfree.calc}
 \title{Probability of freedom over time}
 \usage{
-pfree.calc(sep, p.intro, prior = 0.5)
+pfree.calc(sep, p.intro, prior = 0.5, discount.1 = TRUE)
 }
 \arguments{
 \item{sep}{population sensitivity for each time period (vector)}
@@ -13,6 +13,8 @@ pfree.calc(sep, p.intro, prior = 0.5)
 or vector of same length as sep)}
 
 \item{prior}{prior probability of freedom before surveillance (scalar)}
+
+\item{discount.1}{logical variable whether or not to discount first time period.}
 }
 \value{
 \code{data.frame} with columns for sep, p.intro, discounted
@@ -26,9 +28,10 @@ given prior, sep and p.intro over 1 or more time periods
 \examples{
 # examples for pfree.calc
 pfree.calc(0.8, 0.01, 0.5)
+pfree.calc(0.8, 0.01, 0.5, FALSE)
 pfree.calc(rep(0.6,24), 0.01, 0.5)
+pfree.calc(rep(0.6,24), 0.01, 0.5, FALSE)
 pfree.calc(runif(10, 0.4, 0.6), 0.01, 0.5)
 pfree.calc(runif(10, 0.4, 0.6), runif(10, 0.005, 0.015), 0.5)
 }
 \keyword{methods}
-

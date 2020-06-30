@@ -41,4 +41,3 @@ tp(x, n, se, sp, "c-p")
 tp(x, n, 0.95, 0.9, "c-p")
 }
 \keyword{methods}
-

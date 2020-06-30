@@ -36,4 +36,3 @@ sep.freecalc(150, 30, 1, 0.9, 0.98, 0.1)
 
 }
 \keyword{methods}
-

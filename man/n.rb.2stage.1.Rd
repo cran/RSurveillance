@@ -52,4 +52,3 @@ n.rb.2stage.1(rr, ppr, spr, pstar.c=0.01, pstar.u=0.1, se =0.9, sep.c=0.8, sep.s
 n.rb.2stage.1(c(3,1), c(0.2,0.8), c(0.7,0.3),0.05, 0.1, 0.9, 0.95, 0.99)
 }
 \keyword{methods}
-

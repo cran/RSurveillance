@@ -58,4 +58,3 @@ df<- data.frame(rg, se, n)
 sep.rb.hypergeo.varse(0.01, c(5, 3, 1), c(100, 300, 600), df)
 }
 \keyword{methods}
-

@@ -31,4 +31,3 @@ tp.normal(25, 120, 0.9, 0.99)
 tp.normal(seq(5, 25, by=5), 120, 0.9, 0.99)
 }
 \keyword{methods}
-

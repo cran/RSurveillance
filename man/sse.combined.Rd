@@ -48,4 +48,3 @@ sse.combined(C, pstar, rr, sep = sep)
 sse.combined(C=NA, pstar, rr, ppr, sep = sep)
 }
 \keyword{methods}
-

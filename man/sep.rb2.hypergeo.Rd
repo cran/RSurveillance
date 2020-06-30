@@ -46,4 +46,3 @@ se<- 0.8
 sep.rb2.hypergeo(pstar, rr1, rr2, N, n, se)
 }
 \keyword{methods}
-

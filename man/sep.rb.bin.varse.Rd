@@ -55,4 +55,3 @@ df<- data.frame(rg, se, n)
 sep.rb.bin.varse(0.01, c(5, 3, 1), c(0.1, 0.3, 0.6), df)
 }
 \keyword{methods}
-

@@ -47,4 +47,3 @@ m<- rbind(c(1), c(1))
 n.rb.varse(0.05, c(3, 1), c(0.2, 0.8), c(0.7, 0.3), c(0.95), m, 0.99)
 }
 \keyword{methods}
-

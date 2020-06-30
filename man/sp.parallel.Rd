@@ -21,4 +21,3 @@ Calculates the combined specificity for multiple tests
 sp.parallel(c(0.99, 0.95, 0.8))
 }
 \keyword{methods}
-

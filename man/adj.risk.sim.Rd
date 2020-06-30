@@ -36,4 +36,3 @@ adj.risk.sim(rr, ppr)
 adj.risk.sim(matrix(c(5, 3, 1), nrow=1), matrix(c(0.1, 0.1, 0.8), nrow=1))
 }
 \keyword{methods}
-

@@ -34,4 +34,3 @@ n.hypergeo(0.95, N=80, d=c(1, 2, 5, 10))
 n.hypergeo(0.95, N=80, d=c(1, 2, 5, 10), se = 0.8)
 }
 \keyword{methods}
-

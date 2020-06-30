@@ -4,8 +4,8 @@
 \alias{n.rb.2stage.2}
 \title{Sample size for 2-stage risk-based surveillance, allowing for risk factors at either or both cluster and unit level}
 \usage{
-n.rb.2stage.2(rr.c, ppr.c, spr.c, pstar.c, rr.u = 1, ppr.u = 1, spr.u = 1,
-  pstar.u, se = 1, sep.c = 0.95, sep.sys = 0.95)
+n.rb.2stage.2(rr.c, ppr.c, spr.c, pstar.c, rr.u = 1, ppr.u = 1,
+  spr.u = 1, pstar.u, se = 1, sep.c = 0.95, sep.sys = 0.95)
 }
 \arguments{
 \item{rr.c}{relative risk values at the cluster level (vector of values, corresponding 
@@ -63,4 +63,3 @@ n.rb.2stage.2(c(3,1), c(0.2,0.8), c(0.7,0.3), pstar.c=0.05,
   pstar.u=0.1, se=0.9, sep.c=0.95, sep.sys=0.99)
 }
 \keyword{methods}
-

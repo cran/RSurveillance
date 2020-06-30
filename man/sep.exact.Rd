@@ -31,4 +31,3 @@ sep.exact(d=inf, se=sens)
 sep.exact(se=0.8, d = ceiling(0.01*c(10, 50, 100, 250, 500)))
 }
 \keyword{methods}
-

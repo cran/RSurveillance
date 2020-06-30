@@ -21,4 +21,3 @@ Calculates the combined sensitivity for multiple tests
 se.parallel(c(0.99, 0.95, 0.8))
 }
 \keyword{methods}
-

@@ -36,4 +36,3 @@ sep.binom.imperfect(30, 2, 0.9, 0.98, 0.1)
 sep.binom.imperfect(30, 1, 0.9, 0.98, 0.1)
 }
 \keyword{methods}
-

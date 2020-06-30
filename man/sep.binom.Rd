@@ -35,4 +35,3 @@ sens<- 0.9
 sep.binom(tested, prev, sens)
 }
 \keyword{methods}
-

@@ -48,4 +48,3 @@ n<- rbind(c(50, 20), c(20, 10))
 sep.rb2.binom(pstar, rr1, ppr1, rr2, ppr2, n, se)
 }
 \keyword{methods}
-

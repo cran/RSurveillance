@@ -29,4 +29,3 @@ binom.cp(seq(10, 100, 10), 200)
 binom.cp(50, seq(100, 1000, 100))
 }
 \keyword{methods}
-

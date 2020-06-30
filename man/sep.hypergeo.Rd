@@ -38,4 +38,3 @@ N<- c(10, 50, 100, 250, 500)
 sep.hypergeo(se=0.8, N=N, n=c(5, 25, 50, 125, 250), d = ceiling(0.01*N))
 }
 \keyword{methods}
-
